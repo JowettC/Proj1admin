@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
       <login-form/>
-  </div>
 </template>
 
 <script>

@@ -1,5 +1,7 @@
 <template>
   <div class ="login-container">
+  <div class ="login-fields"> 
+    <h1 class="title">Alpha Global Wellness Admin</h1>
    <b-field label="Username">
             <b-input v-model="inputUsername"></b-input>
         </b-field>
@@ -7,6 +9,7 @@
         <b-field label="Password">
             <b-input v-model="inputPassword" type="password"></b-input>
         </b-field>
+  </div>
   </div>
 </template>
 <script>
@@ -54,9 +57,19 @@ export default {
 </script>
 
 <style scoped>
-.login-container{
-    max-width:500px;
-    margin:auto;
+.login-fields{
+  padding:20px;
 
+}
+.login-container{
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+  border-radius: 15px;
+    max-width:300px;
+    margin:auto;
+}
+@media only screen and (max-width: 550px){
+  .login-container{
+    max-width:80vw;
+  }
 }
 </style>
