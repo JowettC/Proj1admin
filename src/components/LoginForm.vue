@@ -1,4 +1,5 @@
 <template>
+<section class ="login-section">
   <div class ="login-container">
   <div class ="login-fields"> 
     <h1 class="title">Alpha Global Wellness Admin</h1>
@@ -11,6 +12,7 @@
         </b-field>
   </div>
   </div>
+  </section>
 </template>
 <script>
 export default {
@@ -57,11 +59,20 @@ export default {
 </script>
 
 <style scoped>
+.login-section{
+  position:relative;
+  width:100vw;
+  height:100vh;
+}
 .login-fields{
   padding:20px;
 
 }
 .login-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
   border-radius: 15px;
     max-width:300px;
