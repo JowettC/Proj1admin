@@ -4,6 +4,7 @@
       <div id="navbar-links">
         <router-link to="/">Home</router-link>
         <router-link to="/workshop">Workshops</router-link>
+        <router-link to="/download">Download</router-link>
       </div>
         <span class="log-out-web">Log out</span>
     </div>
@@ -17,6 +18,7 @@
       <ul>
         <router-link tag="li" to="/">Home</router-link>
         <router-link tag="li" to="/workshop">Workshops</router-link>
+        <router-link tag="li" to="/download">Download</router-link>
       </ul>
       <p class="log-out-mobile">Log out</p>
     </div>
