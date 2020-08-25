@@ -1,10 +1,22 @@
 <template>
-  <main id="app">
-    <router-view />
-  </main>
+
+  <div id="app">
+    <nav-bar/>
+    <router-view/>
+  </div>
 </template>
 
-<style lang="scss">
+<script>
+import NavBar from "./components/NavBar.vue"
+export default {
+  name:'App',
+  components:{
+    NavBar,
+  }
+}
+</script>
+<style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
