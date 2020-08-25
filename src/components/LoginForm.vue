@@ -26,7 +26,7 @@ export default {
       error: null,
     };
   },
-//   methods: {
+  methods: {
 //     addErrorMsg(error) {
 //       if (this.message) {
 //         this.message[0].content = error;
@@ -34,27 +34,28 @@ export default {
 //         this.message = [{ severity: "error", content: error }];
 //       }
 //     },
-    // async submitForm() {
-    //   // retrieve user
-    //   const res = await this.$http
-    //     .post("login", {
-    //       json: {
-    //         username: this.inputUsername,
-    //         password: this.inputPassword,
-    //       },
-    //     })
-    //     .json();
-    //   if (res.message) {
-    //     this.addErrorMsg(res.message);
-    //   } else {
-    //     this.$store.dispatch("setToken", res.token);
-    //     this.$store.dispatch("setUser", this.inputUsername);
-    //     this.$store.dispatch("setRole", res.roleName);
+    async submitForm() {
+      // retrieve user
+      const res = await this.$http
+        .post("login", {
+          json: {
+            username: this.inputUsername,
+            password: this.inputPassword,
+          },
+        })
+        .json();
+      if (res.message) {
+        console.log(res.message);
+      } else {
+        console.log("test")
+        // this.$store.dispatch("setToken", res.token);
+        // this.$store.dispatch("setUser", this.inputUsername);
+        // this.$store.dispatch("setRole", res.roleName);
         
-    //     this.$router.push({ name: "Dashboard" });
-    //   }
-    // },
-//   },
+        // this.$router.push({ name: "Dashboard" });
+      }
+    },
+  },
 };
 </script>
 
