@@ -27,32 +27,18 @@ export default {
     };
   },
   methods: {
-//     addErrorMsg(error) {
-//       if (this.message) {
-//         this.message[0].content = error;
-//       } else {
-//         this.message = [{ severity: "error", content: error }];
-//       }
-//     },
-    async submitForm() {
-      // retrieve user
+     async onSubmit() {
       const res = await this.$http
         .post("login", {
-          json: {
-            username: this.inputUsername,
-            password: this.inputPassword,
-          },
+          json: { username: this.inputUsername, password: this.inputPassword },
         })
         .json();
-      if (res.message) {
+      if (res.error) {
         console.log(res.message);
       } else {
-        console.log("test")
-        // this.$store.dispatch("setToken", res.token);
-        // this.$store.dispatch("setUser", this.inputUsername);
-        // this.$store.dispatch("setRole", res.roleName);
-        
-        // this.$router.push({ name: "Dashboard" });
+        // await this.$store.dispatch("login", res.data);
+        // this.$router.push("/");
+        console.log("logged in");
       }
     },
   },
