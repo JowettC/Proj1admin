@@ -17,7 +17,7 @@
         class="is-fullwidth"
       />
   </div>
-  </form>
+    </form>
   </div>
   </section>
 </template>
