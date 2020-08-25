@@ -1,6 +1,7 @@
 <template>
 <section class ="login-section">
   <div class ="login-container">
+    <form id="login-form" class="card" @submit.prevent="onSubmit">
   <div class ="login-fields"> 
     <h1 class="title">Alpha Global Wellness Admin</h1>
    <b-field label="Username">
@@ -10,7 +11,13 @@
         <b-field label="Password">
             <b-input v-model="inputPassword" type="password"></b-input>
         </b-field>
+        <b-button
+        native-type="submit"
+        type="is-primary"
+        class="is-fullwidth"
+      />
   </div>
+  </form>
   </div>
   </section>
 </template>
