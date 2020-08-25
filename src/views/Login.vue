@@ -1,15 +1,23 @@
 <template>
-      <login-form/>
+  <section class="hero is-fullheight is-info" id="login-container">
+    <div class="hero-body">
+      <div class="container">
+        <login-card />
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 // @ is an alias to /src
-import LoginForm from '@/components/LoginForm.vue'
+import LoginCard from "@/components/Login/LoginCard.vue";
 
 export default {
-  name: 'Login',
+  name: "Login",
   components: {
-    LoginForm
-  }
-}
+    LoginCard,
+  },
+};
 </script>
+
+<style lang="scss" scoped></style>
