@@ -19,7 +19,7 @@
             </b-navbar-item>
         </template>
         <template slot="start">
-            <b-navbar-item href="#">
+            <b-navbar-item href="/workshop">
                 Workshops
             </b-navbar-item>
             <b-navbar-item href="#">
