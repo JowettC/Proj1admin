@@ -22,10 +22,19 @@ export default {
   },
   methods: {
     async onSubmit() {
-      console.log("sending to server");
+      const res = await this.$http
+        .post("login", {
+          json: { username: this.username, password: this.password },
+        })
+        .json();
+      if (res.error) {
+        console.log(res.message);
+      } else {
+        // await this.$store.dispatch("login", res.data);
+        // this.$router.push("/");
+        console.log("logged in");
+      }
     },
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
