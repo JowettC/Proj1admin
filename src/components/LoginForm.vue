@@ -3,7 +3,7 @@
   <div class ="login-container">
     <form id="login-form" class="card" @submit.prevent="onSubmit">
   <div class ="login-fields"> 
-    <h1 class="title">Alpha Global Wellness Admin</h1>
+    <h1 class="login-title">Alpha Global Wellness Admin</h1>
    <b-field label="Username">
             <b-input v-model="inputUsername"></b-input>
         </b-field>
@@ -53,6 +53,9 @@ export default {
 </script>
 
 <style scoped>
+.login-title{
+  text-align:center;
+}
 .login-section{
   position:relative;
   width:100vw;

@@ -10,7 +10,7 @@ Vue.use(Buefy);
 Vue.config.productionTip = false;
 
 const api = ky.create({
-  prefixUrl: "https://vldqmvfnzd.execute-api.ap-southeast-1.amazonaws.com/dev/",
+  prefixUrl: "https://df0lt32z9l.execute-api.ap-southeast-1.amazonaws.com/dev/",
   throwHttpErrors: false,
 });
 
