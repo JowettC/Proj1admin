@@ -1,22 +1,20 @@
 <template>
-
   <div id="app">
-    <nav-bar/>
-    <router-view/>
+    <nav-bar v-if="$store.state.token" />
+    <router-view />
   </div>
 </template>
 
 <script>
-import NavBar from "./components/NavBar.vue"
+import NavBar from "./components/NavBar.vue";
 export default {
-  name:'App',
-  components:{
+  name: "App",
+  components: {
     NavBar,
-  }
-}
+  },
+};
 </script>
 <style>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
