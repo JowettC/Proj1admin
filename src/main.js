@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import Buefy from "buefy";
 import ky from 'ky';
+import store from "./store";
 import "./assets/global-styles.scss";
 
 Vue.use(Buefy);
@@ -18,6 +19,7 @@ Vue.prototype.$http = api;
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");
 
