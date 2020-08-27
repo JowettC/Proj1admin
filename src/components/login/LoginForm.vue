@@ -32,7 +32,8 @@ export default {
       } else {
         this.$store.dispatch("login", res.data);
         console.log(res.data)
-        this.$router.push("/");
+        console.log (this.$store.state.token)
+        this.$router.push("/workshop");
         console.log("logged in");
       }
     },
