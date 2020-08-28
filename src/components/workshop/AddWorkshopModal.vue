@@ -43,8 +43,9 @@
                   <b-datetimepicker
                     v-model="dateTime"
                     placeholder="Click to select..."
-                    icon="calendar-today"
+                    icon="calendar-day"
                     horizontal-time-picker
+                    append-to-body
                     required
                   >
                   </b-datetimepicker>
