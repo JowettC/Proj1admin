@@ -12,6 +12,16 @@
     <b-table-column field="location" label="Location" v-slot="props">
       {{ props.row.location }}
     </b-table-column>
+    <b-table-column field="actions" label="Actions">
+      <div>
+        <button class="button is-small is-info">
+          <b-icon icon="pen" size="is-small"></b-icon>
+        </button>
+        <button class="button is-small is-danger">
+          <b-icon icon="delete" size="is-small"></b-icon>
+        </button>
+      </div>
+    </b-table-column>
     <template slot="detail" slot-scope="props">
       <div class="content">
         <h3>Description</h3>
