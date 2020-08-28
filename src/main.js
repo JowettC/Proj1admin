@@ -45,7 +45,7 @@ library.add(
   faUpload
 );
 
-Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.component("vue-fontawesome", FontAwesomeIcon);
 
 Vue.use(Buefy, {
   defaultIconComponent: "vue-fontawesome",

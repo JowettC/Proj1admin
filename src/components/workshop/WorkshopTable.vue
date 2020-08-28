@@ -24,7 +24,7 @@
           <b-icon icon="pen" size="is-small" ></b-icon>
         </button> -->
         <button class="button is-small is-danger" @click="deleteDialog(props.row)">
-          <b-icon icon="delete" size="is-small" ></b-icon>
+          <b-icon icon="trash" size="is-small" ></b-icon>
         </button>
       </div>
     </b-table-column>
