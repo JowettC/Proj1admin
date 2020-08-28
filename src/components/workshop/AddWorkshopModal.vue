@@ -1,11 +1,13 @@
 <template>
-  <section>
-    <button
-      class="button is-primary is-medium"
+  <section class="section">
+    <b-button
+      type="is-primary"
+      size="is-medium"
       @click="isComponentModalActive = true"
+      expanded
     >
-      Add Workshop
-    </button>
+      Add
+    </b-button>
     <b-modal
       v-model="isComponentModalActive"
       has-modal-card
