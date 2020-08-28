@@ -59,9 +59,9 @@
                 >
                   Close
                 </button>
-                <b-button type="is-success is-fullwidth" native-type="submit"
-                  >Add</b-button
-                >
+                <b-button type="is-success" native-type="submit" expanded>
+                  Add
+                </b-button>
               </footer>
             </div>
           </form>
@@ -88,16 +88,16 @@ export default {
     async onSubmit() {
       const res = await this.$http
         .post("workshop/add", {
-           json: {
-              title: this.title,
-              description: this.description,
-              quantity: this.quantity,
-              location: this.location,
-              datetime: this.dateTime
-            },
-            headers: { Authorization: `Bearer ${this.$store.state.token}` },
-          })
-          .json();
+          json: {
+            title: this.title,
+            description: this.description,
+            quantity: this.quantity,
+            location: this.location,
+            datetime: this.dateTime,
+          },
+          headers: { Authorization: `Bearer ${this.$store.state.token}` },
+        })
+        .json();
       if (res.error) {
         console.log(res.message);
       } else {
