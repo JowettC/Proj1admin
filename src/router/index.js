@@ -11,11 +11,6 @@ const routes = [
     component: Login,
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
-  },
-  {
     path: "/about",
     name: "About",
     // route level code-splitting
@@ -32,7 +27,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/workshop/ViewWorkshops"),
-      meta: { requiresAuth: true },
+    meta: { requiresAuth: true },
   },
 ];
 
