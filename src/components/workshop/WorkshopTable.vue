@@ -12,13 +12,19 @@
     <b-table-column field="location" label="Location" v-slot="props">
       {{ props.row.location }}
     </b-table-column>
-    <b-table-column field="actions" label="Actions">
+    <b-table-column field="actions" label="Actions" v-slot="props">
       <div>
-        <button class="button is-small is-info">
-          <b-icon icon="pen" size="is-small"></b-icon>
-        </button>
-        <button class="button is-small is-danger">
-          <b-icon icon="delete" size="is-small"></b-icon>
+        <!-- <button class="button is-small is-info" :to="{
+        path: '/form/editWorkshop',
+        query: {
+          serialNoList: getCheckedSerialNo(),
+          firstItem: getFirstCheckedInUriString(),
+        },
+      }">
+          <b-icon icon="pen" size="is-small" ></b-icon>
+        </button> -->
+        <button class="button is-small is-danger" @click="deleteDialog(props.row)">
+          <b-icon icon="delete" size="is-small" ></b-icon>
         </button>
       </div>
     </b-table-column>
@@ -41,30 +47,28 @@ export default {
     };
   },
   async mounted() {
-    this.workshops = [
-      {
-        title: "w1",
-        description: "w1 desc",
-        quantity: "w1 quantity",
-        datetime: "w1 datetime",
-        location: "w1 location",
-      },
-      {
-        title: "w2",
-        description: "w2 desc",
-        quantity: "w2 quantity",
-        datetime: "w2 datetime",
-        location: "w2 location",
-      },
-      {
-        title: "w3",
-        description: "w3 desc",
-        quantity: "w3 quantity",
-        datetime: "w3 datetime",
-        location: "w3 location",
-      },
-    ];
+    const res = await this.$http
+        .get("userworkshop/get")
+        .json();
+      if (res.error) {
+        console.log(res.message);
+      } else {
+        console.log("Data Retrieved")
+        this.workshops = (res.data)
+      }
   },
+  methods:{
+    deleteDialog(workshop) {
+      this.$buefy.dialog.confirm({
+        title: "Deleting Workshop",
+        message: "Are you sure you want to <b>delete (" + workshop.title +")</b>?",
+        confirmText: "Confirm",
+        type: "is-danger",
+        hasIcon: true,
+        onConfirm: () => this.$emit("deleteWs", workshop.workshopId),
+      });
+    },
+  }
 };
 </script>
 
