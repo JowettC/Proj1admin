@@ -17,7 +17,7 @@ export default {
     async deleteWorkShop(workshopId) {
       console.log(workshopId)
       const res = await this.$http
-        .delete(`workshop/checkRecords?workshopId=${workshopId}`, {
+        .delete(`workshop/delete?workshopId=${workshopId}`, {
           headers: { Authorization: `Bearer ${this.$store.state.token}` },
         })
         .json();
