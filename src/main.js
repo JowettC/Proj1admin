@@ -2,18 +2,55 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import Buefy from "buefy";
-import ky from 'ky';
+import ky from "ky";
 import store from "./store";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPen,faTrash } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faPen,
+  faTrash,
+  faCheck,
+  faCheckCircle,
+  faInfoCircle,
+  faExclamationTriangle,
+  faExclamationCircle,
+  faArrowUp,
+  faAngleRight,
+  faAngleLeft,
+  faAngleDown,
+  faEye,
+  faEyeSlash,
+  faCaretDown,
+  faCaretUp,
+  faUpload,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import "./assets/global-styles.scss";
 
-library.add(faPen,faTrash)
- 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
- 
-Vue.use(Buefy);
+library.add(
+  faPen,
+  faTrash,
+  faCheck,
+  faCheckCircle,
+  faInfoCircle,
+  faExclamationTriangle,
+  faExclamationCircle,
+  faArrowUp,
+  faAngleRight,
+  faAngleLeft,
+  faAngleDown,
+  faEye,
+  faEyeSlash,
+  faCaretDown,
+  faCaretUp,
+  faUpload
+);
+
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+
+Vue.use(Buefy, {
+  defaultIconComponent: "vue-fontawesome",
+  defaultIconPack: "fas",
+});
 
 Vue.config.productionTip = false;
 
