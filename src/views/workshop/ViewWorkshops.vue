@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <add-workshop-modal></add-workshop-modal>
-    <workshop-table></workshop-table>
+    <workshop-table @deleteWs="deleteWorkShop" />
   </section>
 </template>
 
@@ -12,6 +12,21 @@ export default {
   components: {
     WorkshopTable,
     AddWorkshopModal,
+  },
+  methods: {
+    async deleteWorkShop(workshopId) {
+      console.log(workshopId)
+      const res = await this.$http
+        .delete(`workshop/delete?workshopId=${workshopId}`, {
+          headers: { Authorization: `Bearer ${this.$store.state.token}` },
+        })
+        .json();
+      if (res.error) {
+        console.log(res.message)
+      } else {
+        console.log("deleted")
+      }
+    },
   },
 };
 </script>
