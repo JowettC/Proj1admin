@@ -28,7 +28,7 @@
         </template>
 
         <template slot="end">
-            <b-navbar-item>
+            <b-navbar-item @click="logout">
                 Log out
             </b-navbar-item>
         </template>
@@ -36,7 +36,13 @@
 </template>
 <script>
 export default {
-    name:'nav-bar'
+    name:'nav-bar',
+    methods: {
+    async logout() {
+      await this.$store.dispatch("logout");
+      this.$router.push("/login");
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
