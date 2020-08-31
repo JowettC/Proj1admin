@@ -5,6 +5,7 @@
       <add-workshop-modal></add-workshop-modal>
       <workshop-table
         @deleteWs="deleteWorkShop"
+        @reloadsData="getWorkshops()"
         :workshopData="this.workshops"
       />
     </div>
@@ -56,6 +57,7 @@ export default {
       } else {
         console.log("deleted");
         this.danger();
+        this.getWorkshops();
       }
     },
   },
