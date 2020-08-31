@@ -130,6 +130,7 @@ export default {
         this.isComponentModalActive = false
         this.clearField()
         this.success()
+        this.$emit("reloadsData")
         
       }
     },
