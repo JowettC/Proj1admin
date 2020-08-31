@@ -3,20 +3,17 @@
     <b-table :data="workshopsUsers" detail-key="title">
       <b-table-column field="waitList" label="Wait List" v-slot="props">
         <div class="field">
-          <b-checkbox
-            :value="getBoolean(props.row.waitList)"
-            @click="changeWaitList(props.row.workshopId)"
-          ></b-checkbox>
+          <b-checkbox v-model="props.row.waitList"></b-checkbox>
         </div>
       </b-table-column>
       <b-table-column field="confirm" label="Confirm" v-slot="props">
         <div class="field">
-          <b-checkbox :value="getBoolean(props.row.confirmed)" @click="changeConfirmed(props.row.workshopId)"></b-checkbox>
+          <b-checkbox v-model="props.row.confirmed"></b-checkbox>
         </div>
       </b-table-column>
       <b-table-column field="attendance" label="Attendance" v-slot="props">
         <div class="field">
-          <b-checkbox :value="getBoolean(props.row.attendance)"  @click="changeAttendance(props.row.workshopId)"></b-checkbox>
+          <b-checkbox v-model="props.row.attendance"></b-checkbox>
         </div>
       </b-table-column>
       <b-table-column field="title" label="Email" v-slot="props">
@@ -43,82 +40,48 @@ export default {
       workshopsUsers: [],
       testy: true,
       arrUser: [],
-      changeArr:[],
+      returnArr: [],
     };
   },
-  async mounted() {
-    const res = await this.$http
-      .get("workshop/getSignups?workshopId=" + this.workshopId, {
-        headers: { Authorization: `Bearer ${this.$store.state.token}` },
-      })
-      .json();
-    if (res.error) {
-      console.log(res.message);
-    } else {
-      console.log("Data Retrieved");
-      this.workshopsUsers = res.data;
-      this.arrUser = res.data;
-      console.log(res.data[0].waitList);
-    }
+  mounted() {
+    this.getUsers();
   },
   methods: {
-    getBoolean(number) {
-      if (number == 0) {
-        return false;
+    async getUsers() {
+      const res = await this.$http
+        .get("workshop/getSignups?workshopId=" + this.workshopId, {
+          headers: { Authorization: `Bearer ${this.$store.state.token}` },
+        })
+        .json();
+      if (res.error) {
+        console.log(res.message);
       } else {
-        return true;
+        this.workshopsUsers = res.data;
+        this.arrUser = JSON.parse(JSON.stringify(this.workshopsUsers));
       }
     },
-    changeWaitList(workshopId) {
-      for (var i in this.arrUser) {
-        if (this.arrUser[i].workshopId == workshopId) {
-          if (this.arrUser[i].waitList == 0){
-            this.arrUser[i].waitList = 1
-          }
-          else if(this.arrUser[i].waitList == 1){
-            this.arrUser[i].waitList = 0
-          }
-        }
-      }
-    },
-    changeConfirmed(workshopId) {
-      for (var i in this.arrUser) {
-        if (this.arrUser[i].workshopId == workshopId) {
-          if (this.arrUser[i].confirmed == 0){
-            this.arrUser[i].confirmed = 1
-          }
-          else if(this.arrUser[i].confirmed == 1){
-            this.arrUser[i].confirmed = 0
-          }
-        }
-      }
-    },
-    changeAttendance(workshopId) {
-      for (var i in this.arrUser) {
-        if (this.arrUser[i].workshopId == workshopId) {
-          if (this.arrUser[i].attendance == 0){
-            this.arrUser[i].attendance = 1
-          }
-          else if(this.arrUser[i].attendance == 1){
-            this.arrUser[i].attendance = 0
-          }
-        }
-      }
-    },
+
     async submit() {
+      this.getReturnArr();
+      console.log(this.returnArr);
+    },
+    getReturnArr() {
       for (var i in this.arrUser) {
-        if (this.workshopsUsers[i] === this.arrUser[i]){
-          console.log('sdfs')
-        }
-        else{
-          console.log('sdfgsd')
-          this.changeArr.append(this.arrUser[i])
+        if (
+          JSON.stringify(this.workshopsUsers[i]) !==
+          JSON.stringify(this.arrUser[i])
+        ) {
+          const x = this.arrUser[i];
+          this.returnArr.push({
+            email: x.email,
+            waitList: x.waitList,
+            confirmed: x.confirmed,
+            attendance: x.attendance,
+          });
         }
       }
-      console.log(this.changeArr.length);
     },
   },
-  computed: {},
 };
 </script>
 
