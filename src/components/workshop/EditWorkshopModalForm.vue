@@ -115,6 +115,7 @@ export default {
         console.log(res.message);
       } else {
         this.success();
+        this.$emit("reload-data")
         this.$parent.close();
       }
     },

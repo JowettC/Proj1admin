@@ -19,6 +19,7 @@
       <template>
         <edit-workshop-modal-form
           :workshopObj="editProps"
+          @reload-data="getWorkshops()"
           @close="editProps = null"
         ></edit-workshop-modal-form>
       </template>
