@@ -13,22 +13,14 @@
       {{ props.row.location }}
     </b-table-column>
     <b-table-column field="actions" label="Actions" v-slot="props">
-      <div>
-        <!-- <button class="button is-small is-info" :to="{
-        path: '/form/editWorkshop',
-        query: {
-          serialNoList: getCheckedSerialNo(),
-          firstItem: getFirstCheckedInUriString(),
-        },
-      }">
-          <b-icon icon="pen" size="is-small" ></b-icon>
-        </button> -->
-        <button
-          class="button is-small is-danger"
+      <div class="buttons">
+        <b-button
+          type="is-danger"
+          size="is-small"
+          icon-right="trash"
           @click="deleteDialog(props.row)"
-        >
-          <b-icon icon="trash" size="is-small"></b-icon>
-        </button>
+        />
+        <b-button type="is-warning" size="is-small" icon-right="edit" />
       </div>
     </b-table-column>
     <template slot="detail" slot-scope="props">
