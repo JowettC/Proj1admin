@@ -20,7 +20,24 @@ export default {
     WorkshopTable,
     AddWorkshopModal,
   },
+  data() {
+    return {
+      workshops: [],
+    };
+  },
+  mounted() {
+    this.getWorkshops();
+  },
   methods: {
+    async getWorkshops() {
+      const res = await this.$http.get("userworkshop/get").json();
+      if (res.error) {
+        console.log(res.message);
+      } else {
+        console.log("Data Retrieved");
+        this.workshops = res.data;
+      }
+    },
     danger() {
       this.$buefy.toast.open({
         duration: 5000,
@@ -39,7 +56,8 @@ export default {
         console.log(res.message);
       } else {
         console.log("deleted");
-        this.danger()
+        this.danger();
+        this.getWorkshops();
       }
     },
   },
