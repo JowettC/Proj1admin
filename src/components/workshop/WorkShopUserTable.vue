@@ -38,7 +38,6 @@ export default {
   data() {
     return {
       workshopsUsers: [],
-      testy: true,
       arrUser: [],
       returnArr: [],
     };
