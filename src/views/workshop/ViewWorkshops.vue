@@ -2,26 +2,45 @@
   <section class="section">
     <div class="box">
       <h1 class="title">Workshops</h1>
-      <add-workshop-modal></add-workshop-modal>
+      <add-workshop-modal @reload-data="getWorkshops()"></add-workshop-modal>
       <workshop-table
         @deleteWs="deleteWorkShop"
+        @edit-ws="editWorkShop"
         :workshopData="this.workshops"
       />
     </div>
+    <b-modal
+      v-model="isComponentModalActive"
+      has-modal-card
+      trap-focus
+      aria-role="dialog"
+      aria-modal
+    >
+      <template>
+        <edit-workshop-modal-form
+          :workshopObj="editProps"
+          @close="editProps = null"
+        ></edit-workshop-modal-form>
+      </template>
+    </b-modal>
   </section>
 </template>
 
 <script>
 import AddWorkshopModal from "@/components/workshop/AddWorkshopModal";
+import EditWorkshopModalForm from "@/components/workshop/EditWorkshopModalForm";
 import WorkshopTable from "@/components/workshop/WorkshopTable";
 export default {
   components: {
     WorkshopTable,
     AddWorkshopModal,
+    EditWorkshopModalForm,
   },
   data() {
     return {
       workshops: [],
+      isComponentModalActive: false,
+      editProps: null,
     };
   },
   mounted() {
@@ -54,9 +73,13 @@ export default {
       if (res.error) {
         console.log(res.message);
       } else {
-        console.log("deleted");
         this.danger();
+        this.getWorkshops();
       }
+    },
+    editWorkShop(workshopObj) {
+      this.editProps = workshopObj;
+      this.isComponentModalActive = true;
     },
   },
 };

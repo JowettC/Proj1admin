@@ -3,11 +3,7 @@
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">Add Workshop</p>
-        <button
-          type="button"
-          class="delete"
-          @click="isComponentModalActive = false"
-        />
+        <button type="button" class="delete" @click="$parent.close()" />
       </header>
       <section class="modal-card-body">
         <b-field label="Title">
@@ -55,6 +51,7 @@
 </template>
 
 <script>
+import * as dayjs from "dayjs";
 export default {
   data() {
     return {
@@ -93,8 +90,8 @@ export default {
             description: this.description,
             quantity: this.quantity,
             location: this.location,
-            datetime: this.dateTime,
-            endDateTime: this.endDateTime,
+            datetime: dayjs(this.dateTime).format(),
+            endDateTime: dayjs(this.endDateTime).format(),
           },
           headers: { Authorization: `Bearer ${this.$store.state.token}` },
         })
@@ -103,6 +100,7 @@ export default {
         console.log(res.message);
       } else {
         this.success();
+        this.$emit("success");
         this.$emit("close");
       }
     },

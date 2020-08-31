@@ -16,7 +16,7 @@
       aria-modal
     >
       <template #default="props">
-        <add-workshop-form @close="props.close"></add-workshop-form>
+        <add-workshop-form @success="$emit('reload-data')" @close="props.close"></add-workshop-form>
       </template>
     </b-modal>
   </section>

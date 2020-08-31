@@ -13,6 +13,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.10",
     "buefy": "^0.9.2",
     "core-js": "^3.6.5",
+    "dayjs": "^1.8.34",
     "ky": "^0.23.0",
     "vue": "^2.6.12",
     "vue-router": "^3.4.3",
