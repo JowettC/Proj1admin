@@ -1,5 +1,5 @@
 <template>
-  <b-table :data="workshops" detailed detail-key="title">
+  <b-table :data="data" detailed detail-key="title">
     <b-table-column field="title" label="Title" v-slot="props">
       {{ props.row.title }}
     </b-table-column>
@@ -41,22 +41,7 @@
 
 <script>
 export default {
-  data() {
-    return {
-      workshops: [],
-    };
-  },
-  async mounted() {
-    const res = await this.$http
-        .get("userworkshop/get")
-        .json();
-      if (res.error) {
-        console.log(res.message);
-      } else {
-        console.log("Data Retrieved")
-        this.workshops = (res.data)
-      }
-  },
+  props: ['data'],
   methods:{
     deleteDialog(workshop) {
       this.$buefy.dialog.confirm({
