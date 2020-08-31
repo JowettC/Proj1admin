@@ -3,7 +3,10 @@
     <div class="box">
       <h1 class="title">Workshops</h1>
       <add-workshop-modal></add-workshop-modal>
-      <workshop-table @deleteWs="deleteWorkShop" :workshopData="this.workshops" />
+      <workshop-table
+        @deleteWs="deleteWorkShop"
+        :workshopData="this.workshops"
+      />
     </div>
   </section>
 </template>
@@ -16,32 +19,28 @@ export default {
     WorkshopTable,
     AddWorkshopModal,
   },
-  data(){
-    return{
-      workshops:null,
-    }
+  data() {
+    return {
+      workshops: [],
+    };
   },
   async mounted() {
-    const res = await this.$http
-        .get("userworkshop/get")
-        .json();
-      if (res.error) {
-        console.log(res.message);
-      } else {
-        console.log("Data Retrieved")
-        this.workshops = (res.data)
-      }
+    const res = await this.$http.get("userworkshop/get").json();
+    if (res.error) {
+      console.log(res.message);
+    } else {
+      console.log("Data Retrieved");
+      this.workshops = res.data;
+    }
   },
   methods: {
-    async reloadData(){
-      const res = await this.$http
-        .get("userworkshop/get")
-        .json();
+    async reloadData() {
+      const res = await this.$http.get("userworkshop/get").json();
       if (res.error) {
         console.log(res.message);
       } else {
-        console.log("Data Retrieved")
-        this.workshops = (res.data)
+        console.log("Data Retrieved");
+        this.workshops = res.data;
       }
     },
     danger() {
@@ -62,7 +61,7 @@ export default {
         console.log(res.message);
       } else {
         console.log("deleted");
-        this.danger()
+        this.danger();
       }
     },
   },

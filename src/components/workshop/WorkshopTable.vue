@@ -23,8 +23,11 @@
       }">
           <b-icon icon="pen" size="is-small" ></b-icon>
         </button> -->
-        <button class="button is-small is-danger" @click="deleteDialog(props.row)">
-          <b-icon icon="trash" size="is-small" ></b-icon>
+        <button
+          class="button is-small is-danger"
+          @click="deleteDialog(props.row)"
+        >
+          <b-icon icon="trash" size="is-small"></b-icon>
         </button>
       </div>
     </b-table-column>
@@ -41,19 +44,28 @@
 
 <script>
 export default {
-  props: ['workshopData'],
-  methods:{
+  props: {
+    workshopData: {
+      type: Array,
+      required: true,
+      default: () => {
+        return new Array();
+      },
+    },
+  },
+  methods: {
     deleteDialog(workshop) {
       this.$buefy.dialog.confirm({
         title: "Deleting Workshop",
-        message: "Are you sure you want to <b>delete (" + workshop.title +")</b>?",
+        message:
+          "Are you sure you want to <b>delete (" + workshop.title + ")</b>?",
         confirmText: "Confirm",
         type: "is-danger",
         hasIcon: true,
         onConfirm: () => this.$emit("deleteWs", workshop.workshopId),
       });
     },
-  }
+  },
 };
 </script>
 
