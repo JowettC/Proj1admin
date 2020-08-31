@@ -1,7 +1,9 @@
 <template>
   <b-table :data="workshops" detailed detail-key="title">
     <b-table-column field="title" label="Title" v-slot="props">
+      <router-link  :to="'/workshopUser/'+props.row.workshopId">
       {{ props.row.title }}
+      </router-link>
     </b-table-column>
     <b-table-column field="datetime" label="Date/Time" v-slot="props">
       {{ props.row.datetime }}

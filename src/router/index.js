@@ -20,6 +20,11 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/workshop/ViewWorkshops"),
     meta: { requiresAuth: true },
   },
+  {
+    path: "/workshopUser/:workshopId",
+    name: "WorkshopUser",
+    component: () => import("../views/workshop/WorkShopUser.vue"),
+  },
 ];
 
 const router = new VueRouter({
