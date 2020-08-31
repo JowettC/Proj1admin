@@ -1,5 +1,5 @@
 <template>
-  <b-table :data="data" detailed detail-key="title">
+  <b-table :data="workshopData" detailed detail-key="title">
     <b-table-column field="title" label="Title" v-slot="props">
       {{ props.row.title }}
     </b-table-column>
@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  props: ['data'],
+  props: ['workshopData'],
   methods:{
     deleteDialog(workshop) {
       this.$buefy.dialog.confirm({

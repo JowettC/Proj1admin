@@ -3,7 +3,7 @@
     <div class="box">
       <h1 class="title">Workshops</h1>
       <add-workshop-modal></add-workshop-modal>
-      <workshop-table @deleteWs="deleteWorkShop" v-bind:data="this.workshops" />
+      <workshop-table @deleteWs="deleteWorkShop" :workshopData="this.workshops" />
     </div>
   </section>
 </template>
