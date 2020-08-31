@@ -20,7 +20,12 @@
           icon-right="trash"
           @click="deleteDialog(props.row)"
         />
-        <b-button type="is-warning" size="is-small" icon-right="edit" />
+        <b-button
+          type="is-warning"
+          size="is-small"
+          icon-right="edit"
+          @click="$emit('edit-ws', props.row)"
+        />
       </div>
     </b-table-column>
     <template slot="detail" slot-scope="props">
@@ -50,12 +55,15 @@ export default {
       this.$buefy.dialog.confirm({
         title: "Deleting Workshop",
         message:
-          "Are you sure you want to <b>delete (" + workshop.title + ")</b>?",
+          "Are you sure you want to <b>delete " + workshop.title + "</b>?",
         confirmText: "Confirm",
         type: "is-danger",
         hasIcon: true,
         onConfirm: () => this.$emit("deleteWs", workshop.workshopId),
       });
+    },
+    editDialog(workshop) {
+      this.$emit("editWS", workshop);
     },
   },
 };
