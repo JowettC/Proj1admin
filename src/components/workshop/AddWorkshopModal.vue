@@ -35,22 +35,17 @@
                 <b-field label="Description">
                   <b-input v-model="description" required></b-input>
                 </b-field>
+                <b-field label="Select datetime">
+                  <b-datetimepicker v-model="dateTime" inline></b-datetimepicker>
+                </b-field>
+                <b-field label="Select end datetime">
+                  <b-datetimepicker v-model="endDateTime" inline></b-datetimepicker>
+                </b-field>
                 <b-field label="Quantity">
                   <b-numberinput v-model="quantity"></b-numberinput>
                 </b-field>
                 <b-field label="Location">
                   <b-input v-model="location" required></b-input>
-                </b-field>
-                <b-field label="Select datetime">
-                  <b-datetimepicker
-                    v-model="dateTime"
-                    placeholder="Click to select..."
-                    icon="calendar-day"
-                    horizontal-time-picker
-                    append-to-body
-                    required
-                  >
-                  </b-datetimepicker>
                 </b-field>
               </section>
 
@@ -62,7 +57,7 @@
                 >
                   Close
                 </button>
-                <b-button type="is-success" native-type="submit" expanded>
+                <b-button type="is-success" native-type="submit" expanded :disabled="!isDataFilled">
                   Add
                 </b-button>
               </footer>
@@ -84,10 +79,36 @@ export default {
       quantity: null,
       location: null,
       dateTime: null,
+      endDateTime:null,
       isComponentModalActive: false,
     };
   },
+  computed:{
+    isDataFilled() {
+      return (
+        this.title !== null &&
+        this.description !== null &&
+        this.quantity !== null &&
+        this.location !== null &&
+        this.dateTime !== null &&
+        this.endDateTime !== null
+      );
+    },
+  },
   methods: {
+    success() {
+      this.$buefy.toast.open({
+        message: "Workshop Added!",
+        type: "is-success",
+      });
+    },
+    clearField(){
+      this.title = null
+      this.description = null
+      this.quantity = null
+      this.location = null
+      this.dateTime = null
+    },
     async onSubmit() {
       const res = await this.$http
         .post("workshop/add", {
@@ -97,6 +118,7 @@ export default {
             quantity: this.quantity,
             location: this.location,
             datetime: this.dateTime,
+            endDateTime: this.endDateTime,
           },
           headers: { Authorization: `Bearer ${this.$store.state.token}` },
         })
@@ -105,6 +127,10 @@ export default {
         console.log(res.message);
       } else {
         console.log("added");
+        this.isComponentModalActive = false
+        this.clearField()
+        this.success()
+        
       }
     },
   },
