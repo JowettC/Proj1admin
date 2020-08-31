@@ -17,6 +17,13 @@ export default {
     AddWorkshopModal,
   },
   methods: {
+    danger() {
+      this.$buefy.toast.open({
+        duration: 5000,
+        message: "Workshop has been deleted",
+        type: "is-danger",
+      });
+    },
     async deleteWorkShop(workshopId) {
       console.log(workshopId);
       const res = await this.$http
@@ -28,6 +35,7 @@ export default {
         console.log(res.message);
       } else {
         console.log("deleted");
+        this.danger()
       }
     },
   },
