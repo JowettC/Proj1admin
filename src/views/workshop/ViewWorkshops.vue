@@ -2,8 +2,12 @@
   <section class="section">
     <div class="box">
       <h1 class="title">Workshops</h1>
-      <add-workshop-modal></add-workshop-modal>
-      <workshop-table @deleteWs="deleteWorkShop" />
+      <add-workshop-modal @reloadsData="getWorkshops()"></add-workshop-modal>
+      <workshop-table
+        @deleteWs="deleteWorkShop"
+        @reloadsData="getWorkshops()"
+        :workshopData="this.workshops"
+      />
     </div>
   </section>
 </template>
