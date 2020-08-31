@@ -24,17 +24,11 @@ export default {
       workshops: [],
     };
   },
-  async mounted() {
-    const res = await this.$http.get("userworkshop/get").json();
-    if (res.error) {
-      console.log(res.message);
-    } else {
-      console.log("Data Retrieved");
-      this.workshops = res.data;
-    }
+  mounted() {
+    this.getWorkshops();
   },
   methods: {
-    async reloadData() {
+    async getWorkshops() {
       const res = await this.$http.get("userworkshop/get").json();
       if (res.error) {
         console.log(res.message);
