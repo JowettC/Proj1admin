@@ -1,7 +1,8 @@
 <template>
   <section id="download-section">
-      <div id="appending"></div>
+    <div id="appendingTest">
     <a>asds</a>
+    </div>
   </section>
 </template>
 <script>
@@ -11,15 +12,24 @@ export default {
   },
   methods: {
     async getAllSignUps() {
-      const res = window.URL.createObjectURL(
-        await this.$http.get("admin/exportAllSignups").json()
+      const res = await this.$http.get(
+        "workshop/getSignups?workshopId=" + this.workshopId,
+        {
+          headers: { Authorization: `Bearer ${this.$store.state.token}` },
+        }
       );
       const a = document.createElement("a");
-      a.href = res;
+      a.srcObject = res;
+    //   if ("srcObject" in a) {
+    //     a.srcObject = res;
+    //   } else {
+    //     // Avoid using this in new browsers, as it is going away.
+    //     a.src = URL.createObjectURL(res);
+    //   }
       a.download = "filename.xlsx";
-      document.getElementById("appending").appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
-      a.click();
-      a.remove(); //afterwards we remove the element again
+      var text = document.createTextNode("Download here");
+      a.appendChild(text);
+      document.getElementById("appendingTest").appendChild(a);
     },
   },
 };
