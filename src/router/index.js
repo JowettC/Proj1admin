@@ -20,6 +20,13 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/workshop/ViewWorkshops"),
     meta: { requiresAuth: true },
   },
+  {
+    path: "/download",
+    name: "Downloads",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Download"),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = new VueRouter({

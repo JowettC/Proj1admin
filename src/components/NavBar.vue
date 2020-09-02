@@ -16,7 +16,7 @@
       <b-navbar-item href="/workshop">
         Workshops
       </b-navbar-item>
-      <b-navbar-item href="#">
+      <b-navbar-item href="/download">
         Downloads
       </b-navbar-item>
     </template>
