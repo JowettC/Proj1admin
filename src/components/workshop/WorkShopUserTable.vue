@@ -37,7 +37,11 @@
       <b-table-column field="email" label="Email" v-slot="props">
         {{ props.row.email }}
       </b-table-column>
-      <b-table-column field="contactNumber" label="Contact Number" v-slot="props">
+      <b-table-column
+        field="contactNumber"
+        label="Contact Number"
+        v-slot="props"
+      >
         {{ props.row.contactNumber }}
       </b-table-column>
       <b-table-column
@@ -90,6 +94,7 @@ export default {
         this.workshopUsersChange = JSON.parse(
           JSON.stringify(this.workshopsUsers)
         );
+        console.log(this.workshopsUsers);
       }
     },
 
