@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table :data="workshopsUsers" detail-key="title">
+    <b-table :data="workshopUsersChange" detail-key="title">
       <b-table-column field="waitList" label="Wait List" v-slot="props">
         <div class="field">
           <b-checkbox v-model="props.row.waitList"></b-checkbox>
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       workshopsUsers: [],
-      arrUser: [],
+      workshopUsersChange: [],
       returnArr: [],
     };
   },
@@ -56,21 +56,41 @@ export default {
         console.log(res.message);
       } else {
         this.workshopsUsers = res.data;
-        this.arrUser = JSON.parse(JSON.stringify(this.workshopsUsers));
+        this.workshopUsersChange = JSON.parse(
+          JSON.stringify(this.workshopsUsers)
+        );
       }
     },
 
     async submit() {
       this.getReturnArr();
-      console.log(this.returnArr);
+      const res = await this.$http
+        .post("workshop/editUserStatus", {
+          json: { workshopId: this.workshopId, userValues: this.returnArr },
+          headers: { Authorization: `Bearer ${this.$store.state.token}` },
+        })
+        .json();
+      if (res.error) {
+        this.$buefy.dialog.alert({
+          title: "Error",
+          message: res.message,
+          confirmText: "Close",
+        });
+      } else {
+        this.$buefy.dialog.alert({
+          title: "Success",
+          message: res.message,
+          confirmText: "Close",
+        });
+      }
     },
     getReturnArr() {
-      for (var i in this.arrUser) {
+      for (var i in this.workshopUsersChange) {
         if (
           JSON.stringify(this.workshopsUsers[i]) !==
-          JSON.stringify(this.arrUser[i])
+          JSON.stringify(this.workshopUsersChange[i])
         ) {
-          const x = this.arrUser[i];
+          const x = this.workshopUsersChange[i];
           this.returnArr.push({
             email: x.email,
             waitList: x.waitList,
