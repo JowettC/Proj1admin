@@ -3,6 +3,8 @@
     <b-table 
     :data="workshopUsersChange" 
     detail-key="title"
+    default-sort="confirmed"
+    default-sort-direction="DESC"
     >
       <b-table-column field="waitList" label="Wait List" v-slot="props" sortable >
         <div class="field">
