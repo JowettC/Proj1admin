@@ -1,17 +1,20 @@
 <template>
   <div>
-    <b-table :data="workshopUsersChange" detail-key="title">
-      <b-table-column field="waitList" label="Wait List" v-slot="props">
+    <b-table 
+    :data="workshopUsersChange" 
+    detail-key="title"
+    >
+      <b-table-column field="waitList" label="Wait List" v-slot="props" sortable >
         <div class="field">
           <b-checkbox v-model="props.row.waitList"></b-checkbox>
         </div>
       </b-table-column>
-      <b-table-column field="confirm" label="Confirm" v-slot="props">
+      <b-table-column field="confirmed" label="Confirm" v-slot="props" sortable >
         <div class="field">
           <b-checkbox v-model="props.row.confirmed"></b-checkbox>
         </div>
       </b-table-column>
-      <b-table-column field="attendance" label="Attendance" v-slot="props">
+      <b-table-column field="attendance" label="Attendance" v-slot="props" sortable >
         <div class="field">
           <b-checkbox v-model="props.row.attendance"></b-checkbox>
         </div>
@@ -19,10 +22,10 @@
       <b-table-column field="title" label="Email" v-slot="props">
         {{ props.row.email }}
       </b-table-column>
-      <b-table-column field="datetime" label="Date/Time" v-slot="props">
+      <b-table-column field="signedUp" label="Date/Time" v-slot="props" sortable >
         {{ props.row.signedUp }}
       </b-table-column>
-      <b-table-column field="infoFrom" label="Info From" v-slot="props">
+      <b-table-column field="infoFrom" label="Info From" v-slot="props" sortable>
         {{ props.row.infoFrom }}
       </b-table-column>
     </b-table>
