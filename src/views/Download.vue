@@ -12,14 +12,23 @@
         >
       </div>
     </div>
-    <div id="text-wrapper"></div>
+    <div id="text-wrapper">
+      <b-field label="Emails for newsletter">
+        <b-input :value="newsletterEmail" type="textarea"></b-input>
+      </b-field>
+    </div>
   </section>
 </template>
 <script>
 export default {
-  // mounted() {
-  //   this.getAllSignUps();
-  // },
+  data() {
+    return {
+      newsletterEmail: null,
+    };
+  },
+  mounted() {
+    this.getNewsletterEmail();
+  },
   methods: {
     async getAllSignUps() {
       const res = await this.$http
@@ -49,6 +58,19 @@ export default {
       a.click();
       a.remove();
     },
+    async getNewsletterEmail() {
+      const res = await this.$http
+        .get("admin/getContacts", {
+          headers: { Authorization: `Bearer ${this.$store.state.token}` },
+        })
+        .json();
+      if (res.error) {
+        this.newsletterEmail = res.message;
+      } else {
+        console.log(res);
+        this.newsletterEmail = res.data;
+      }
+    },
   },
 };
 </script>
@@ -56,20 +78,23 @@ export default {
 #download-section {
   padding-top: 100px;
   height: 80vh;
+  display: flex;
+  padding: 100px;
+  justify-content: space-between;
 }
 #download-link-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   width: 40%;
   position: relative;
   .download-link {
-    margin-left:auto; margin-right:0;
-    display:flex;
+    margin-left: auto;
+    margin-right: 0;
+    display: flex;
     align-items: center;
-    b{
-      margin:30px;
+    b {
+      margin: 30px;
     }
   }
 }
