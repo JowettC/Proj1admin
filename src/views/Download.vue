@@ -13,11 +13,12 @@ export default {
   methods: {
     async getAllSignUps() {
       const res = await this.$http.get(
-        "workshop/getSignups?workshopId=" + this.workshopId,
+        "admin/exportContacts",
         {
           headers: { Authorization: `Bearer ${this.$store.state.token}` },
         }
       );
+      console.log(res);
       const a = document.createElement("a");
       a.srcObject = res;
     //   if ("srcObject" in a) {
@@ -27,9 +28,9 @@ export default {
     //     a.src = URL.createObjectURL(res);
     //   }
       a.download = "filename.xlsx";
-      var text = document.createTextNode("Download here");
-      a.appendChild(text);
-      document.getElementById("appendingTest").appendChild(a);
+      console.log(a);
+      document.body.appendChild(a);
+      a.click();
     },
   },
 };
