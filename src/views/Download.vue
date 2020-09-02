@@ -1,7 +1,7 @@
 <template>
   <section id="download-section">
     <div id="appendingTest">
-    <a>asds</a>
+      <a>asds</a>
     </div>
   </section>
 </template>
@@ -12,25 +12,18 @@ export default {
   },
   methods: {
     async getAllSignUps() {
-      const res = await this.$http.get(
-        "admin/exportContacts",
-        {
+      const res = await this.$http
+        .get("admin/exportContacts", {
           headers: { Authorization: `Bearer ${this.$store.state.token}` },
-        }
-      );
-      console.log(res);
+        })
+        .text();
       const a = document.createElement("a");
-      a.srcObject = res;
-    //   if ("srcObject" in a) {
-    //     a.srcObject = res;
-    //   } else {
-    //     // Avoid using this in new browsers, as it is going away.
-    //     a.src = URL.createObjectURL(res);
-    //   }
-      a.download = "filename.xlsx";
-      console.log(a);
+      a.href = `data:attachment/csv,${encodeURIComponent(res)}`;
+      a.download = "filename.csv";
+      a.target = "_blank";
       document.body.appendChild(a);
       a.click();
+      a.remove();
     },
   },
 };
