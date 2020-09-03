@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      newsletterEmail: null,
+      newsletterEmail: "",
     };
   },
   mounted() {
@@ -67,8 +67,9 @@ export default {
       if (res.error) {
         this.newsletterEmail = res.message;
       } else {
-        console.log(res);
-        this.newsletterEmail = res.data;
+        res.data.forEach(element => {
+          this.newsletterEmail += element.email + "; "
+        });
       }
     },
   },
