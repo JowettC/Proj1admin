@@ -2,7 +2,7 @@
   <form @submit.prevent="onSubmit">
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Add Workshop</p>
+        <p class="modal-card-title">Edit Workshop</p>
         <button type="button" class="delete" @click="$parent.close" />
       </header>
       <section class="modal-card-body">
