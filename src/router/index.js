@@ -21,9 +21,18 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+
+    path: "/download",
+    name: "Downloads",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Download"),
+    meta: { requiresAuth: true },
+  },
+  {
     path: "/workshopUser/:workshopId",
     name: "WorkshopUser",
     component: () => import("../views/workshop/WorkShopUser.vue"),
+
   },
 ];
 
