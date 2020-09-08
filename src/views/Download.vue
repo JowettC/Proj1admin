@@ -2,21 +2,19 @@
   <section id="download-section">
     <div id="download-link-wrapper">
       <div class="download-link">
-        <b>All Users</b>
-        <b-button type="is-info" @click="getAllSignUps">Download</b-button>
-      </div>
-      <div class="download-link">
-        <b>All Users that has signed up for workshop</b>
-        <b-button type="is-info" @click="getAllSignUpsWorkshop"
+        <b-field label="All Users" class="download-center-label">
+            <b-button type="is-info" @click="getAllSignUps">Download</b-button>
+        </b-field>
+        <b-field label="All Users that has signed up for workshop" class="download-center-label">
+            <b-button type="is-info" @click="getAllSignUpsWorkshop"
           >Download</b-button
         >
+        </b-field>
       </div>
     </div>
-    <div id="text-wrapper">
-      <b-field label="Emails for newsletter">
-        <b-input :value="newsletterEmail" type="textarea"></b-input>
+      <b-field label="Emails for newsletter" class ="download-center-label">
+        <b-input :value="newsletterEmail" type="textarea" class ="download-textbox-width"></b-input>
       </b-field>
-    </div>
   </section>
 </template>
 <script>
@@ -76,28 +74,28 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.download-center-label{
+  text-align: center;
+}
 #download-section {
   padding-top: 100px;
   height: 80vh;
-  display: flex;
-  padding: 100px;
   justify-content: space-between;
 }
 #download-link-wrapper {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  width: 40%;
-  position: relative;
   .download-link {
     margin-left: auto;
     margin-right: 0;
-    display: flex;
     align-items: center;
     b {
       margin: 30px;
     }
   }
+}
+.download-textbox-width{
+  width:50%;
+  margin:auto;
 }
 #text-wrapper {
   width: 50%;
