@@ -20,8 +20,9 @@ export default new Vuex.Store({
     login: ({ commit }, payload) => {
       commit("SET_TOKEN", payload);
     },
-    logout: () => {
+    logout: ({state}) => {
       localStorage.removeItem("token");
+      state.token = null;
     },
   },
   getters: {
