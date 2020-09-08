@@ -21,6 +21,14 @@ export default {
     };
   },
   methods: {
+    danger(message) {
+      this.$buefy.toast.open({
+        duration: 5000,
+        message: message,
+        position: "is-bottom",
+        type: "is-danger",
+      });
+    },
     async onSubmit() {
       const res = await this.$http
         .post("login", {
@@ -29,10 +37,11 @@ export default {
         .json();
       if (res.error) {
         console.log(res.message);
+        this.danger(res.message)
       } else {
         this.$store.dispatch("login", res.data);
-        console.log(res.data)
-        console.log (this.$store.state.token)
+        console.log(res.data);
+        console.log(this.$store.state.token);
         this.$router.push("/workshop");
         console.log("logged in");
       }
