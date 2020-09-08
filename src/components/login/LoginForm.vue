@@ -36,14 +36,10 @@ export default {
         })
         .json();
       if (res.error) {
-        console.log(res.message);
-        this.danger(res.message)
+        this.danger(res.message);
       } else {
         this.$store.dispatch("login", res.data);
-        console.log(res.data);
-        console.log(this.$store.state.token);
         this.$router.push("/workshop");
-        console.log("logged in");
       }
     },
   },
