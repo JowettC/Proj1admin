@@ -5,8 +5,11 @@
       {{ props.row.title }}
       </router-link>
     </b-table-column>
-    <b-table-column field="datetime" label="Date/Time" v-slot="props">
+    <b-table-column field="datetime" label="Start" v-slot="props">
       {{ props.row.datetime }}
+    </b-table-column>
+    <b-table-column field="datetime" label="End" v-slot="props">
+      {{ props.row.endDateTime }}
     </b-table-column>
     <b-table-column field="quantity" label="Quantity" v-slot="props">
       {{ props.row.quantity }}
