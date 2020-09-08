@@ -9,19 +9,19 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_TOKEN: (state, payload) => {
-      localStorage.setItem("token", JSON.stringify(payload));
+      localStorage.setItem("token", payload);
       state.token = payload;
     },
   },
   actions: {
     init({ commit }) {
-      commit("SET_TOKEN", JSON.parse(localStorage.getItem("token")));
+      commit("SET_TOKEN", localStorage.getItem("token"));
     },
     login: ({ commit }, payload) => {
       commit("SET_TOKEN", payload);
     },
-    logout: ({ commit }) => {
-      commit("SET_TOKEN", null);
+    logout: () => {
+      localStorage.removeItem("token");
     },
   },
   getters: {

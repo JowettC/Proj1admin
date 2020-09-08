@@ -22,8 +22,9 @@
     </template>
 
     <template slot="end">
+      <hr />
       <b-navbar-item @click="logout">
-        Log out
+        Logout
       </b-navbar-item>
     </template>
   </b-navbar>

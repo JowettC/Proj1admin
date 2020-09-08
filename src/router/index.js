@@ -21,7 +21,6 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-
     path: "/download",
     name: "Downloads",
     component: () =>
@@ -32,7 +31,6 @@ const routes = [
     path: "/workshopUser/:workshopId",
     name: "WorkshopUser",
     component: () => import("../views/workshop/WorkShopUser.vue"),
-
   },
 ];
 
@@ -51,7 +49,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!store.getters.isAuthenticated) {
       next({
-        path: "/login",
+        path: "/",
         query: {
           redirect: to.fullPath,
         },
@@ -61,6 +59,7 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     //Redirect to dashboard if user is already logged in and trying to access Login page
+    console.log(store.getters.isAuthenticated);
     if (store.getters.isAuthenticated && to.name === "Login") {
       next("/workshop");
     } else {
