@@ -6,13 +6,7 @@
         <button type="button" class="delete" @click="$parent.close" />
       </header>
       <section class="modal-card-body">
-        <b-field label="Title">
-          <b-input v-model="title" required></b-input>
-        </b-field>
-        <b-field label="Description">
-          <b-input v-model="description" required></b-input>
-        </b-field>
-        <b-field label="Select datetime">
+        <b-field label="Select Start Datetime">
           <b-datetimepicker
             v-model="dateTime"
             append-to-body
@@ -20,13 +14,19 @@
             :timepicker="{ incrementMinutes: 5 }"
           ></b-datetimepicker>
         </b-field>
-        <b-field label="Select end datetime">
+        <b-field label="Select End datetime">
           <b-datetimepicker
             v-model="endDateTime"
             append-to-body
             locale="en-SG"
             :timepicker="{ incrementMinutes: 5 }"
           ></b-datetimepicker>
+        </b-field>
+        <b-field label="Title">
+          <b-input v-model="title" required></b-input>
+        </b-field>
+        <b-field label="Description">
+          <b-input v-model="description" required></b-input>
         </b-field>
         <b-field label="Quantity">
           <b-numberinput v-model="quantity"></b-numberinput>
