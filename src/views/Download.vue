@@ -1,21 +1,43 @@
 <template>
-  <section id="download-section">
-    <div id="download-link-wrapper">
-      <div class="download-link">
-        <b-field label="All Users" class="download-center-label">
-            <b-button type="is-info" @click="getAllSignUps">Download</b-button>
-        </b-field>
-        <b-field label="All Users that has signed up for workshop" class="download-center-label">
-            <b-button type="is-info" @click="getAllSignUpsWorkshop"
-          >Download</b-button
+  <section class="section">
+    <div class="box">
+      <h1 class="title">Downloads</h1>
+      <div class="buttons">
+        <b-button
+          type="is-info"
+          size="is-medium"
+          icon-left="file-download"
+          @click="getAllSignUps"
         >
-        </b-field>
+          All Users
+        </b-button>
+        <b-button
+          type="is-info"
+          size="is-medium"
+          icon-left="file-download"
+          @click="getAllSignUpsWorkshop"
+        >
+          Workshop Sign Ups
+        </b-button>
       </div>
-    </div>
-    <br/>
-      <b-field label="Emails for newsletter" class ="download-center-label">
-        <b-input :value="newsletterEmail" type="textarea" class ="download-textbox-width"></b-input>
+      <b-field label="Newsletter Emails">
+        <b-input
+          id="textId"
+          :value="newsletterEmail"
+          type="textarea"
+          readonly
+        ></b-input>
       </b-field>
+
+      <b-button
+        type="is-info"
+        size="is-medium"
+        icon-left="file-download"
+        @click="copyEmailsToClipboard"
+      >
+        Copy Emails
+      </b-button>
+    </div>
   </section>
 </template>
 <script>
@@ -66,39 +88,23 @@ export default {
       if (res.error) {
         this.newsletterEmail = res.message;
       } else {
-        res.data.forEach(element => {
-          this.newsletterEmail += element.email + "; "
+        res.data.forEach((element) => {
+          this.newsletterEmail += element.email + "; ";
         });
+      }
+    },
+    async copyEmailsToClipboard() {
+      if (!navigator.clipboard) {
+        document.execCommand("copy", false, this.newsletterEmail);
+      } else {
+        try {
+          await navigator.clipboard.writeText(this.newsletterEmail);
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-.download-center-label{
-  text-align: center;
-}
-#download-section {
-  padding-top: 100px;
-  height: 80vh;
-  justify-content: space-between;
-}
-#download-link-wrapper {
-  align-items: center;
-  .download-link {
-    margin-left: auto;
-    margin-right: 0;
-    align-items: center;
-    b {
-      margin: 30px;
-    }
-  }
-}
-.download-textbox-width{
-  width:50%;
-  margin:auto;
-}
-#text-wrapper {
-  width: 50%;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -24,6 +24,7 @@ import {
   faUpload,
   faCalendarDay,
   faEdit,
+  faFileDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import "./assets/global-styles.scss";
@@ -46,7 +47,8 @@ library.add(
   faCaretUp,
   faUpload,
   faCalendarDay,
-  faEdit
+  faEdit,
+  faFileDownload
 );
 
 Vue.component("vue-fontawesome", FontAwesomeIcon);
