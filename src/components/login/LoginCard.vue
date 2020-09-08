@@ -24,5 +24,9 @@ export default {
   h1 {
     color: #363636;
   }
+  
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 }
 </style>
