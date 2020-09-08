@@ -12,6 +12,7 @@
         </b-field>
       </div>
     </div>
+    <br/>
       <b-field label="Emails for newsletter" class ="download-center-label">
         <b-input :value="newsletterEmail" type="textarea" class ="download-textbox-width"></b-input>
       </b-field>
