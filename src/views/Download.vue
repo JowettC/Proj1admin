@@ -9,7 +9,7 @@
           icon-left="file-download"
           @click="getAllSignUps"
         >
-          All Users
+          All Enquirers
         </b-button>
         <b-button
           type="is-info"
