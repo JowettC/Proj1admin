@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div class="button-wrapper">
+      <b-button
+        type="is-info"
+        size="is-medium"
+        icon-left="file-download"
+        @click="getSignUps"
+      >
+        Workshop Sign ups
+      </b-button>
+    </div>
     <b-table
       :data="workshopUsersChange"
       detail-key="title"
@@ -69,7 +79,7 @@
 
 <script>
 export default {
-  props: ["workshopId"],
+  props: ["workshopId", "workshopTitle"],
   data() {
     return {
       workshopsUsers: [],
@@ -94,7 +104,6 @@ export default {
         this.workshopUsersChange = JSON.parse(
           JSON.stringify(this.workshopsUsers)
         );
-        console.log(this.workshopsUsers);
       }
     },
 
@@ -136,8 +145,26 @@ export default {
         }
       }
     },
+    async getSignUps() {
+      const res = await this.$http
+        .get("admin/exportSignups?workshopId=" + this.workshopId, {
+          headers: { Authorization: `Bearer ${this.$store.state.token}` },
+        })
+        .text();
+      const a = document.createElement("a");
+      a.href = `data:attachment/csv,${encodeURIComponent(res)}`;
+      a.download = this.workshopTitle + "-Signups.csv";
+      a.target = "_blank";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.button-wrapper {
+  padding: 50px;
+}
+</style>

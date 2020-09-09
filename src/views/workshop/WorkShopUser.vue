@@ -2,7 +2,7 @@
   <section class="section">
     <div class="box">
       <h1 class="title">Workshops Users</h1>
-      <workshop-user-table :workshopId="getWorkShopId"/>
+      <workshop-user-table :workshopId="getWorkShopId" :workshopTitle="getWorkShopTitle"/>
     </div>
   </section>
 </template>
@@ -16,6 +16,9 @@ export default {
   computed: {
     getWorkShopId() {
       return this.$route.params.workshopId;
+    },
+    getWorkShopTitle() {
+      return this.$route.params.workshopTitle;
     },
   },
 };

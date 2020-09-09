@@ -17,7 +17,7 @@
           icon-left="file-download"
           @click="getAllSignUpsWorkshop"
         >
-          Workshop Sign Ups
+          All Workshop Sign Ups
         </b-button>
       </div>
       <b-field label="Newsletter Emails">

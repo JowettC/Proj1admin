@@ -28,7 +28,7 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: "/workshopUser/:workshopId",
+    path: "/workshopUser/:workshopId/:workshopTitle",
     name: "WorkshopUser",
     component: () => import("../views/workshop/WorkShopUser.vue"),
   },
