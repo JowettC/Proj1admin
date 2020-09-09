@@ -165,6 +165,6 @@ export default {
 
 <style lang="scss" scoped>
 .button-wrapper {
-  padding: 50px;
+  padding-bottom: 50px;
 }
 </style>
