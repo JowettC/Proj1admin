@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="box">
-      <h1 class="title">Workshops Users</h1>
+      <h1 class="title">{{getWorkShopTitle}}</h1>
       <workshop-user-table :workshopId="getWorkShopId" :workshopTitle="getWorkShopTitle"/>
     </div>
   </section>
