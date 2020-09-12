@@ -59,7 +59,7 @@ export default {
         .text();
       const a = document.createElement("a");
       a.href = `data:attachment/csv,${encodeURIComponent(res)}`;
-      a.download = "filename.csv";
+      a.download = "AllEnquirers.csv";
       a.target = "_blank";
       document.body.appendChild(a);
       a.click();
@@ -73,7 +73,7 @@ export default {
         .text();
       const a = document.createElement("a");
       a.href = `data:attachment/csv,${encodeURIComponent(res)}`;
-      a.download = "filename.csv";
+      a.download = "AllWorkshopSignUps.csv";
       a.target = "_blank";
       document.body.appendChild(a);
       a.click();
