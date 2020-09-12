@@ -41,6 +41,11 @@
           <b-checkbox v-model="props.row.attendance"></b-checkbox>
         </div>
       </b-table-column>
+      <b-table-column field="remarks" label="Remarks" v-slot="props">
+        <div class="field">
+          <b-input class="remarks-input" v-model="props.row.remarks"></b-input>
+        </div>
+      </b-table-column>
       <b-table-column field="name" label="Name" v-slot="props">
         {{ props.row.name }}
       </b-table-column>
@@ -141,6 +146,7 @@ export default {
             waitList: x.waitList,
             confirmed: x.confirmed,
             attendance: x.attendance,
+            remarks: x.remarks,
           });
         }
       }
@@ -166,5 +172,8 @@ export default {
 <style lang="scss" scoped>
 .button-wrapper {
   padding-bottom: 50px;
+}
+.remarks-input {
+  min-width: 200px;
 }
 </style>
