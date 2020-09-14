@@ -96,13 +96,29 @@ export default {
     async copyEmailsToClipboard() {
       if (!navigator.clipboard) {
         document.execCommand("copy", false, this.newsletterEmail);
+        this.success("Coppied")
       } else {
         try {
           await navigator.clipboard.writeText(this.newsletterEmail);
         } catch (error) {
+          this.danger("Something went wrong")
           console.log(error);
         }
       }
+    },
+    success(str) {
+      this.$buefy.toast.open({
+        message: str,
+        type: "is-success",
+      });
+    },
+    danger(str) {
+      this.$buefy.toast.open({
+        duration: 5000,
+        message: str,
+        position: "is-bottom",
+        type: "is-danger",
+      });
     },
   },
 };
